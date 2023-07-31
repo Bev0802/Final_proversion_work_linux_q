@@ -77,6 +77,22 @@ VALUES ('Горбатый', '2022-04-10', 'вернись', 3),
 ('Самец', '2019-03-12', "остановись", 3),  
 ('Сифон', '2015-07-12', "повернись", 3), 
 ('Борода', '2022-12-10', "улыбнись", 3);
+
+CREATE TABLE donkeys 
+(       
+    Id INT AUTO_INCREMENT PRIMARY KEY, 
+    Name VARCHAR(20), 
+    Birthday DATE,
+    Commands VARCHAR(50),
+    Genus_id int,
+    Foreign KEY (Genus_id) REFERENCES packed_animals (Id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+INSERT INTO donkeys (Name, Birthday, Commands, Genus_id)
+VALUES ('Первый', '2019-04-10', NULL, 2),
+('Второй', '2020-03-12', "", 2),  
+('Третий', '2021-07-12', "", 2), 
+('Четвертый', '2022-12-10', NULL, 2);
+
 //////////////////////////////////////////////////////////////////////////
 mysql> show tables;
 +-------------------------+
@@ -86,12 +102,13 @@ mysql> show tables;
 | camels                  |
 | cats                    |
 | dogs                    |
+| donkeys                 |
 | hamsters                |
 | home_animals            |
 | horses                  |
 | packed_animals          |
 +-------------------------+
-8 rows in set (0,00 sec)
+9 rows in set (0,00 sec)
 
 mysql> SELECT * FROM camels;
 +----+------------------+------------+----------------------+----------+
@@ -123,6 +140,17 @@ mysql> SELECT * FROM dogs;
 |  3 | Шарик      | 2018-05-01 | сидеть, лежать, лапу, след, фас                        |        2 |
 |  4 | Босс       | 2021-05-10 | сидеть, лежать, фу, место                              |        2 |
 +----+------------+------------+--------------------------------------------------------+----------+
+4 rows in set (0,00 sec)
+
+mysql> SELECT * FROM donkeys;
++----+--------------------+------------+----------+----------+
+| Id | Name               | Birthday   | Commands | Genus_id |
++----+--------------------+------------+----------+----------+
+|  1 | Первый             | 2019-04-10 | NULL     |        2 |
+|  2 | Второй             | 2020-03-12 |          |        2 |
+|  3 | Третий             | 2021-07-12 |          |        2 |
+|  4 | Четвертый          | 2022-12-10 | NULL     |        2 |
++----+--------------------+------------+----------+----------+
 4 rows in set (0,00 sec)
 
 mysql> SELECT * FROM hamsters;
