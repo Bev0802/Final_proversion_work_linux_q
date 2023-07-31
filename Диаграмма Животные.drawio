@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="M4oYCLGrOlLugYdD1tJf" name="Страница 1">
+        <mxGraphModel dx="1058" dy="473" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Животные" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="10" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="кошки" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="240" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="собаки" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="182.5" y="240" width="85" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="хомячки" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="240" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Домашние животные" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="120" width="210" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Вьючне животные" style="shape=tape;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="110" width="180" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="верблюды" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="240" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="ослы" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                    <mxGeometry x="580" y="240" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="лошади" style="shape=dataStorage;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="240" width="100" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
