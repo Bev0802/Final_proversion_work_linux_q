@@ -8,7 +8,7 @@ public class Donkey extends Pack{
 
     @Override
     public String toString() {
-        return "Donkey: " + super.toString();
+        return "\nDonkey - " + super.toString();
     }
     
 }

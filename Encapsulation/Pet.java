@@ -18,6 +18,6 @@ public abstract class Pet extends Animals {
 
     @Override
     public String toString() {
-        return super.toString() + ", commands = " + commands + "\n";
+        return super.toString() + ", commands: " + commands;
     }
 }

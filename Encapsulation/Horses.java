@@ -8,7 +8,7 @@ public class Horses extends Pack{
 
     @Override
     public String toString() {
-        return "horses: " + super.toString();
+        return "\nHorses - " + super.toString();
     }
     
 }

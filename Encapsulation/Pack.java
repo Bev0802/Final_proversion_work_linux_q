@@ -18,7 +18,7 @@ public abstract class Pack extends Animals {
 
     @Override
     public String toString() {
-        return super.toString() + ", weight_cargo=" + weight_cargo + "]";
+        return super.toString() + ", weight_cargo: " + weight_cargo;
     }   
 
 

@@ -8,7 +8,7 @@ public class Camel extends Pack{
 
     @Override
     public String toString() {       
-        return "Camel: " + super.toString();
+        return "\nCamel - " + super.toString();
     }
     
 }
