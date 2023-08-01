@@ -5,8 +5,8 @@ public enum PetEnum {
     Dog,
     Hamster;
 
-    public static PetEnum getType (int numType){
-        switch (numType){
+    public static PetEnum getType(int numType) {
+        switch (numType) {
             case 1:
                 return PetEnum.Cat;
             case 2:

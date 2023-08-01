@@ -1,5 +1,7 @@
 package Animal_classes;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Pet {
 
@@ -8,37 +10,43 @@ public abstract class Pet {
     protected LocalDate birthday; // - день рождения
 
     // protected Pet(int id, String nickname, LocalDate birthday) {
-    //     this.id = id;
-    //     this.nickname = nickname;
-    //     this.birthday = birthday;
+    // this.id = id;
+    // this.nickname = nickname;
+    // this.birthday = birthday;
     // }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
-    protected void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    protected String getNickname() {
+    public String getNickname() {
         return nickname;
     }
 
-    protected void setNickname(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    protected LocalDate getBirthday() {
+    public void setBirthday(LocalDate data) {
+        this.birthday = data;
+    }
+
+    public LocalDate getBirthdayDate() {
         return birthday;
     }
 
-    protected void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public String getBirthday() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return formatter.format(birthday);
     }
 
     @Override
     public String toString() {
-        return String.format("%d. %s: кличка: %s, дата рождения: %s", getId(), getClass().getSimpleName(), nickname, getBirthday());
-      }
+        return String.format("%d. %s: кличка: %s, дата рождения: %s", getId(), getClass().getSimpleName(), nickname,
+                getBirthday());
+    }
 }

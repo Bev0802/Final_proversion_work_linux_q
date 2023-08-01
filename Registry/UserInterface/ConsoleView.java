@@ -2,7 +2,7 @@
 
 import java.util.List;
 import java.util.Scanner;
-import Model.*;
+import Animal_classes.*;
 
 public class ConsoleView implements View <Pet> {
 
