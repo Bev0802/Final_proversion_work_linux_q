@@ -3,7 +3,7 @@ package UserInterface;
 import java.util.Scanner;
 import Controller.*;
 import Exceptions.UncorrectDataException;
-import Animal_classes.PetType;
+import Animal_classes.Pet;
 
 public class ConsoleMenu {
 
@@ -30,7 +30,7 @@ public class ConsoleMenu {
                         petController.getAllPet();
                         break;
                     case "2":
-                        PetType type = menuChoice(in);
+                        Pet type = menuChoice(in);
                         if (type != null) {
                             try {
                                 petController.createPet(type);
@@ -84,18 +84,18 @@ public class ConsoleMenu {
         }
     }
 
-    private PetType menuChoice(Scanner in) {
+    private Pet menuChoice(Scanner in) {
         System.out.println("Какое животное добавить:\n1 - Кошка\n2 - Собака\n3 - Хомяк\n0 - Возврат в основное меню");
 
         while (true) {
             String key = in.next();
             switch (key) {
                 case "1":
-                    return PetType.Cat;
+                    return Pet.Cat;
                 case "2":
-                    return PetType.Dog;
+                    return Pet.Dog;
                 case "3":
-                    return PetType.Hamster;
+                    return Pet.Hamster;
                 case "0":
                     return null;
                 default:

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import Model.*;
 
-public class ConsoleView implements View <PetType> {
+public class ConsoleView implements View <Pet> {
 
     Scanner in;
 
@@ -30,7 +30,7 @@ public class ConsoleView implements View <PetType> {
         if (list.isEmpty())
             System.out.println("список пуст");
         else {
-            if (clazz == PetType.class)
+            if (clazz == Pet.class)
                 System.out.println("\n          Наши питомцы:");
             for (T item : list) {
                 System.out.println(item);              
