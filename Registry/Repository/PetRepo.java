@@ -10,29 +10,27 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
-
-
 import Animal_classes.Creator;
 
-public class PetRepo implements IdRepo <Pet> {
-    
+public class PetRepo implements IdRepo<Pet> {
+
     private Creator petCreator;
     private Statement sqlSt;
     private ResultSet resultSet;
     private String SQLstr;
-    
+
     public PetRepo() {
         this.petCreator = new CreatorType();
     };
 
     @Override
     public List<Pet> getAll() {
-        List<Pet> farm = new ArrayList<Pet>();
+        List<Pet> human_friends = new ArrayList<Pet>();
         Pet pet;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
-                sqlSt = dbConnection . createStatement();
+                sqlSt = dbConnection.createStatement();
                 SQLstr = "SELECT GenusId, Id, PetName, Birthday FROM pet_list ORDER BY Id";
                 resultSet = sqlSt.executeQuery(SQLstr);
                 while (resultSet.next()) {
@@ -41,17 +39,17 @@ public class PetRepo implements IdRepo <Pet> {
                     int id = resultSet.getInt(2);
                     String name = resultSet.getString(3);
                     LocalDate birthday = resultSet.getDate(4).toLocalDate();
-                    
+
                     pet = petCreator.createPet(type, name, birthday);
                     pet.setId(id);
-                    farm.add(pet);
+                    human_friends.add(pet);
                 }
-                return farm;
-            } 
+                return human_friends;
+            }
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        }           
+        }
     }
 
     @Override
@@ -61,7 +59,7 @@ public class PetRepo implements IdRepo <Pet> {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
 
-                SQLstr = "SELECT GenusId, Id, PetName, Birthday FROM pet_list WHERE Id = ?";
+                SQLstr = "SELECT GenusId, Id, Nickname, Birthday FROM pet_list WHERE Id = ?";
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
                 prepSt.setInt(1, Pid);
                 resultSet = prepSt.executeQuery();
@@ -75,9 +73,9 @@ public class PetRepo implements IdRepo <Pet> {
 
                     pet = petCreator.createPet(type, name, birthday);
                     pet.setId(id);
-                } 
+                }
                 return pet;
-            } 
+            }
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
@@ -94,7 +92,7 @@ public class PetRepo implements IdRepo <Pet> {
                 SQLstr = "INSERT INTO pet_list (PetName, Birthday, GenusId) SELECT ?, ?, (SELECT Id FROM pet_types WHERE Genus_name = ?)";
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
                 prepSt.setString(1, pet.getNickname());
-                prepSt.setDate(2, Date.valueOf(pet.getBirthdayDate())); 
+                prepSt.setDate(2, Date.valueOf(pet.getBirthdayDate()));
                 prepSt.setString(3, pet.getClass().getSimpleName());
 
                 rows = prepSt.executeUpdate();
@@ -103,10 +101,10 @@ public class PetRepo implements IdRepo <Pet> {
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        } 
+        }
     }
 
-    public void train (int id, String command){
+    public void train(int id, String command) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
@@ -120,18 +118,19 @@ public class PetRepo implements IdRepo <Pet> {
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        } 
+        }
     }
 
-    public List<String> getCommandsById (int petId, int commands_type){   
-        
-        // commands type = 1  - получить команды, выполняемые питомцем, 2 - команды, выполнимые животным того рода, к которому относится питомец
+    public List<String> getCommandsById(int petId, int commands_type) {
 
-        List <String> commands = new ArrayList <>();
+        // commands type = 1 - получить команды, выполняемые питомцем, 2 - команды,
+        // выполнимые животным того рода, к которому относится питомец
+
+        List<String> commands = new ArrayList<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
-                if (commands_type == 1){
+                if (commands_type == 1) {
                     SQLstr = "SELECT Command_name FROM pet_command pc JOIN commands c ON pc.CommandId = c.Id WHERE pc.PetId = ?";
                 } else {
                     SQLstr = "SELECT Command_name FROM commands c JOIN Genus_command gc ON c.Id = gc.CommandId WHERE gc.GenusId = (SELECT GenusId FROM pet_list WHERE Id = ?)";
@@ -147,7 +146,7 @@ public class PetRepo implements IdRepo <Pet> {
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        } 
+        }
     }
 
     @Override
@@ -160,38 +159,38 @@ public class PetRepo implements IdRepo <Pet> {
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
 
                 prepSt.setString(1, pet.getNickname());
-                prepSt.setDate(2, Date.valueOf(pet.getBirthdayDate())); 
-                prepSt.setInt(3,pet.getId());
-                
+                prepSt.setDate(2, Date.valueOf(pet.getBirthdayDate()));
+                prepSt.setInt(3, pet.getId());
+
                 rows = prepSt.executeUpdate();
                 return rows;
             }
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        } 
+        }
     }
 
     @Override
-    public void delete (int id) {
+    public void delete(int id) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
                 SQLstr = "DELETE FROM pet_list WHERE Id = ?";
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
-                prepSt.setInt(1,id);
+                prepSt.setInt(1, id);
                 prepSt.executeUpdate();
             }
         } catch (ClassNotFoundException | IOException | SQLException ex) {
             Logger.getLogger(PetRepo.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException(ex.getMessage());
-        } 
+        }
     }
 
     public static Connection getConnection() throws SQLException, IOException {
 
         Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/Resources/database.properties")) {
+        try (FileInputStream fis = new FileInputStream("Registry/Resources/database.properties")) {
 
             props.load(fis);
             String url = props.getProperty("url");
@@ -202,5 +201,3 @@ public class PetRepo implements IdRepo <Pet> {
         }
     }
 }
-
-
