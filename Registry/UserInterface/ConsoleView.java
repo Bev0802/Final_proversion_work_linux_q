@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import Animal_classes.*;
 
+/*Моды для получение данных с консоли */
 public class ConsoleView implements View <Pet> {
 
     Scanner in;

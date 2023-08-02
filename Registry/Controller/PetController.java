@@ -6,8 +6,9 @@ import Animal_classes.*;
 import Repository.*;
 import UserInterface.*;
 
+//* Обработка запросов пользователя.
 public class PetController {
-    private IdRepo <Pet> petRepo;
+    private IdRepo<Pet> petRepo;
     private Creator petCreator;
     private final View<Pet> view;
     private Validator validator;
@@ -19,6 +20,7 @@ public class PetController {
         this.validator = new Validator();
     }
 
+    /* Обработка создаение записи */
     public void createPet(PetEnum type) {
 
         String[] data = new String[] { view.getName(), view.getBirthday() };
@@ -34,6 +36,7 @@ public class PetController {
 
     }
 
+    /* Обработка изменения записи */
     public void updatePet(int id) {
 
         Pet pet = getById(id);
@@ -54,6 +57,7 @@ public class PetController {
 
     }
 
+    /* Обработка получения всех записей */
     public void getAllPet() {
         try {
             view.printAll(petRepo.getAll(), Pet.class);
@@ -62,6 +66,7 @@ public class PetController {
         }
     }
 
+    /* Обработка добавления команды животному */
     public boolean trainPet(int id, String command) {
         try {
 
@@ -82,6 +87,7 @@ public class PetController {
         return false;
     }
 
+    // получение ID
     public Pet getById(int id) {
         try {
             return petRepo.getById(id);
@@ -91,6 +97,7 @@ public class PetController {
         return null;
     }
 
+    // обработка удаления записи
     public void delete(int id) {
         try {
             petRepo.delete(id);
@@ -100,6 +107,7 @@ public class PetController {
         }
     }
 
+    // получение списка команд животного по ID.
     public void getCommands(int id) {
         try {
             view.printAll(((PetRepo) petRepo).getCommandsById(id, 1), String.class);

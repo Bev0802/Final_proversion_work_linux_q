@@ -4,7 +4,9 @@ import java.util.Scanner;
 import Controller.*;
 import Exceptions.UncorrectDataException;
 import Animal_classes.*;
-
+/**
+*Класс меню для взаимодействия с пользователем
+*/
 public class ConsoleMenu {
 
     PetController petController;
@@ -23,7 +25,7 @@ public class ConsoleMenu {
             while (flag) {
 
                 System.out.println(
-                        "\n1 - Список всех животных\n2 - Завести новое животное\n3 - Изменить данные о животном\n4 - Что умеет животное\n5 - Дрессировка\n6 - Удалить запись\n0 - Выход");
+                        "\n1 - Список всех животных\n2 - Завести новое животное\n3 - Изменить данные о животном\n4 - Что умеет животное\n5 - Добавить команду\n6 - Удалить запись\n0 - Выход");
                 String key = in.next();
                 switch (key) {
                     case "1":

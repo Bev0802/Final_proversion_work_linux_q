@@ -12,6 +12,9 @@ import java.sql.*;
 import java.time.LocalDate;
 import Animal_classes.Creator;
 
+/**
+ * Класс служит для работы с базой данных берет данные для входа в Resources\database.properties
+ */
 public class PetRepo implements IdRepo<Pet> {
 
     private Creator petCreator;
