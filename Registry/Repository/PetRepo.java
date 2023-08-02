@@ -31,7 +31,7 @@ public class PetRepo implements IdRepo<Pet> {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
                 sqlSt = dbConnection.createStatement();
-                SQLstr = "SELECT GenusId, Id, PetName, Birthday FROM pet_list ORDER BY Id";
+                SQLstr = "SELECT GenusId, Id, Nickname, Birthday FROM pet_list ORDER BY Id";
                 resultSet = sqlSt.executeQuery(SQLstr);
                 while (resultSet.next()) {
 
@@ -89,7 +89,7 @@ public class PetRepo implements IdRepo<Pet> {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
 
-                SQLstr = "INSERT INTO pet_list (PetName, Birthday, GenusId) SELECT ?, ?, (SELECT Id FROM pet_types WHERE Genus_name = ?)";
+                SQLstr = "INSERT INTO pet_list (Nickname, Birthday, GenusId) SELECT ?, ?, (SELECT Id FROM pet_types WHERE Genus_name = ?)";
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
                 prepSt.setString(1, pet.getNickname());
                 prepSt.setDate(2, Date.valueOf(pet.getBirthdayDate()));
@@ -155,7 +155,7 @@ public class PetRepo implements IdRepo<Pet> {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {
-                SQLstr = "UPDATE pet_list SET PetName = ?, Birthday = ? WHERE Id = ?";
+                SQLstr = "UPDATE pet_list SET Nickname = ?, Birthday = ? WHERE Id = ?";
                 PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
 
                 prepSt.setString(1, pet.getNickname());
